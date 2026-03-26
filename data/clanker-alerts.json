@@ -1,34 +1,26 @@
 [
   {
     "severity": "low",
-    "message": "ℹ️ 当前共有 500 个持币地址（模拟数据）",
+    "message": "ℹ️ 当前共有 500 个持币地址（数据来源：Moralis API）",
     "address": null,
     "rank": null,
     "amount": null,
-    "timestamp": "2026-03-26T02:17:07.056Z"
-  },
-  {
-    "severity": "medium",
-    "message": "📈 大户变动：#10 地址买入 1.00M 代币",
-    "address": "0x0bf50b3ff11e84216fdd880ed17c4197edfd8425",
-    "rank": 10,
-    "amount": 1.0028280774372291,
-    "timestamp": "2026-03-26T01:31:26.485Z"
+    "timestamp": "2026-03-26T02:36:20.119Z"
   },
   {
     "severity": "high",
-    "message": "🔴 超大庄家地址：#1 地址持有 15.5824% 的代币",
-    "address": "0x8fa6f20704330b8533f55e6b298607da57a6b1e5",
+    "message": "🔴 超大庄家地址：#1 地址持有 13.98% 的代币",
+    "address": "0x8d4ab2a3e89eadfdc729204adf863a0bfc7746f6",
     "rank": 1,
-    "amount": 15582390.69,
-    "timestamp": "2026-03-26T01:17:07.056Z"
+    "amount": 139816.13,
+    "timestamp": "2026-03-26T02:36:20.119Z"
   },
   {
-    "severity": "medium",
-    "message": "📊 前100地址集中度：91.17%，流动性较为集中",
-    "address": "0x8fa6f20704330b8533f55e6b298607da57a6b1e5",
-    "rank": 1,
-    "amount": 15582390.69,
-    "timestamp": "2026-03-26T00:17:07.056Z"
+    "severity": "low",
+    "message": "📝 前500地址中有 63 个合约地址",
+    "address": null,
+    "rank": null,
+    "amount": null,
+    "timestamp": "2026-03-26T02:36:20.119Z"
   }
 ]
