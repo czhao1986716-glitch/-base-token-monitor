@@ -2,9 +2,9 @@ name: Sync Token Data
 
 # 触发条件
 on:
-  # 每小时执行一次（UTC 时间）
+  # 每天 UTC 00:00 执行一次（北京时间 08:00）
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 0 * * *'
 
   # 允许手动触发
   workflow_dispatch:
