@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clanker (CLANKER) - Base Token Monitor</title>
+    <meta name="description" content="Clanker 代币持仓监控 - 前500持币地址变化追踪">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../" class="back-link">← 返回列表</a>
+                <div class="token-info">
+                    <h1 class="logo">Clanker</h1>
+                    <span class="token-symbol">CLANKER</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="main">
+        <div class="container">
+            <!-- 统计卡片 -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">总持币地址数</div>
+                    <div class="stat-value" id="totalHolders">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">前10地址集中度</div>
+                    <div class="stat-value" id="top10Concentration">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">前100地址集中度</div>
+                    <div class="stat-value" id="top100Concentration">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">最后更新</div>
+                    <div class="stat-value small" id="lastUpdate">-</div>
+                </div>
+            </section>
+
+            <!-- 鲸鱼预警面板 -->
+            <section class="alerts-section">
+                <div class="section-header">
+                    <h2>⚠️ 鲸鱼预警</h2>
+                    <span class="badge" id="alertCount">0 条预警</span>
+                </div>
+                <div class="alerts-list" id="alertsList">
+                    <div class="loading">加载中...</div>
+                </div>
+            </section>
+
+            <!-- 前500持币地址表格 -->
+            <section class="holders-section">
+                <div class="section-header">
+                    <h2>前500持币地址</h2>
+                    <button class="btn-refresh" onclick="refreshData()">
+                        <span class="icon">🔄</span> 刷新数据
+                    </button>
+                </div>
+
+                <!-- 表格 -->
+                <div class="table-container">
+                    <table class="holders-table">
+                        <thead>
+                            <tr>
+                                <th>排名</th>
+                                <th>地址</th>
+                                <th class="text-right">持仓量</th>
+                                <th class="text-right">占比</th>
+                                <th class="text-right">24h变化</th>
+                            </tr>
+                        </thead>
+                        <tbody id="holdersTableBody">
+                            <tr>
+                                <td colspan="5" class="text-center">加载中...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 分页 -->
+                <div class="pagination" id="pagination">
+                    <!-- 分页按钮将通过 JavaScript 动态生成 -->
+                </div>
+            </section>
+
+            <!-- 数据说明 -->
+            <section class="info-card">
+                <h3>📊 数据说明</h3>
+                <ul>
+                    <li>数据每小时自动更新一次</li>
+                    <li>持仓量包含所有已确认的转账</li>
+                    <li>过滤了已知的 CEX 地址和死地址</li>
+                    <li>点击"刷新数据"可手动获取最新数据</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Base Token Monitor</p>
+            <p class="text-muted">
+                合约地址:
+                <code class="address">0x1bc0c42215582d5A085795f4baDbaC3ff36d1Bcb</code> |
+                <a href="https://basescan.org/token/0x1bc0c42215582d5A085795f4baDbaC3ff36d1Bcb" target="_blank">BaseScan</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // 代币符号
+        const TOKEN_SYMBOL = 'clanker';
+
+        // 当前页码
+        let currentPage = 1;
+        const pageSize = 50;
+
+        // 加载数据
+        async function loadData() {
+            try {
+                // 加载统计数据
+                const statsResponse = await fetch(`../data/clanker-stats.json`);
+                const stats = await statsResponse.json();
+
+                document.getElementById('totalHolders').textContent = stats.total_holders.toLocaleString();
+                document.getElementById('top10Concentration').textContent = stats.top10_concentration + '%';
+                document.getElementById('top100Concentration').textContent = stats.top100_concentration + '%';
+                document.getElementById('lastUpdate').textContent = formatTime(stats.last_update);
+
+                // 加载预警数据
+                const alertsResponse = await fetch(`../data/clanker-alerts.json`);
+                const alerts = await alertsResponse.json();
+
+                renderAlerts(alerts);
+
+                // 加载持币数据
+                const holdersResponse = await fetch(`../data/clanker-holders.json`);
+                const holders = await holdersResponse.json();
+
+                renderHoldersTable(holders);
+
+            } catch (error) {
+                console.error('加载数据失败:', error);
+                showError('加载数据失败，请稍后重试');
+            }
+        }
+
+        // 渲染预警列表
+        function renderAlerts(alerts) {
+            const container = document.getElementById('alertsList');
+            document.getElementById('alertCount').textContent = `${alerts.length} 条预警`;
+
+            if (alerts.length === 0) {
+                container.innerHTML = '<div class="no-data">暂无预警</div>';
+                return;
+            }
+
+            container.innerHTML = alerts.slice(0, 10).map(alert => `
+                <div class="alert-item alert-${alert.severity}">
+                    <div class="alert-header">
+                        <span class="alert-icon">${getSeverityIcon(alert.severity)}</span>
+                        <span class="alert-time">${formatTime(alert.timestamp)}</span>
+                    </div>
+                    <div class="alert-message">${alert.message}</div>
+                    ${alert.address ? `<div class="alert-address">地址: ${formatAddress(alert.address)}</div>` : ''}
+                </div>
+            `).join('');
+        }
+
+        // 渲染持币表格
+        function renderHoldersTable(holders) {
+            const tableBody = document.getElementById('holdersTableBody');
+            const start = (currentPage - 1) * pageSize;
+            const end = start + pageSize;
+            const pageHolders = holders.slice(start, end);
+
+            tableBody.innerHTML = pageHolders.map((holder, index) => `
+                <tr>
+                    <td>${start + index + 1}</td>
+                    <td>
+                        <a href="https://basescan.org/address/${holder.address}" target="_blank" class="address-link">
+                            ${formatAddress(holder.address)}
+                        </a>
+                    </td>
+                    <td class="text-right">${formatBalance(holder.balance)}</td>
+                    <td class="text-right">${holder.percentage}%</td>
+                    <td class="text-right ${holder.change_24h >= 0 ? 'text-green' : 'text-red'}">
+                        ${holder.change_24h >= 0 ? '+' : ''}${holder.change_24h.toFixed(2)}%
+                    </td>
+                </tr>
+            `).join('');
+
+            // 渲染分页
+            renderPagination(holders.length);
+        }
+
+        // 渲染分页
+        function renderPagination(totalHolders) {
+            const totalPages = Math.ceil(totalHolders / pageSize);
+            const pagination = document.getElementById('pagination');
+
+            let html = '';
+
+            // 上一页
+            if (currentPage > 1) {
+                html += `<button onclick="goToPage(${currentPage - 1})">← 上一页</button>`;
+            }
+
+            // 页码
+            for (let i = 1; i <= totalPages && i <= 10; i++) {
+                html += `<button class="${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+            }
+
+            // 下一页
+            if (currentPage < totalPages) {
+                html += `<button onclick="goToPage(${currentPage + 1})">下一页 →</button>`;
+            }
+
+            pagination.innerHTML = html;
+        }
+
+        // 跳转页面
+        function goToPage(page) {
+            currentPage = page;
+            loadData();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 刷新数据
+        function refreshData() {
+            loadData();
+        }
+
+        // 格式化地址
+        function formatAddress(address) {
+            return `${address.slice(0, 6)}...${address.slice(-4)}`;
+        }
+
+        // 格式化余额
+        function formatBalance(balance) {
+            const num = parseFloat(balance);
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(2) + 'M';
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(2) + 'K';
+            }
+            return num.toFixed(2);
+        }
+
+        // 格式化时间
+        function formatTime(timestamp) {
+            const date = new Date(timestamp);
+            const now = new Date();
+            const diff = Math.floor((now - date) / 1000); // 秒
+
+            if (diff < 60) return '刚刚';
+            if (diff < 3600) return `${Math.floor(diff / 60)} 分钟前`;
+            if (diff < 86400) return `${Math.floor(diff / 3600)} 小时前`;
+
+            return date.toLocaleString('zh-CN');
+        }
+
+        // 获取严重程度图标
+        function getSeverityIcon(severity) {
+            const icons = {
+                high: '🔴',
+                medium: '🟡',
+                low: '🟢'
+            };
+            return icons[severity] || '⚪';
+        }
+
+        // 显示错误
+        function showError(message) {
+            document.getElementById('holdersTableBody').innerHTML = `
+                <tr>
+                    <td colspan="5" class="text-center text-red">${message}</td>
+                </tr>
+            `;
+        }
+
+        // 页面加载时执行
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>

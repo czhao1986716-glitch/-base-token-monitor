@@ -1,0 +1,26 @@
+[
+  {
+    "severity": "low",
+    "message": "🟢 小额变动：#49 地址持仓变化 1.47%",
+    "address": "0x43191a9820971551cd2d66a9b658897634140e15",
+    "rank": 49,
+    "amount": 4.829264815743377,
+    "timestamp": "2026-03-25T15:26:55.090Z"
+  },
+  {
+    "severity": "high",
+    "message": "🔴 大额卖出：#99 地址卖出 1.68M 代币",
+    "address": "0xabcdf590135f2525c91d593ef2837b2e1b98e717",
+    "rank": 99,
+    "amount": -2.954490285565585,
+    "timestamp": "2026-03-25T10:47:02.230Z"
+  },
+  {
+    "severity": "medium",
+    "message": "🟡 中等卖出：#90 地址卖出 1.76M 代币",
+    "address": "0x30fc54e3781716e43bed937696f023f897d1a1e8",
+    "rank": 90,
+    "amount": -2.198094974409142,
+    "timestamp": "2026-03-25T05:08:25.467Z"
+  }
+]

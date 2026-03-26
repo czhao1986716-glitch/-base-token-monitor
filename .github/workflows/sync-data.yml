@@ -1,0 +1,52 @@
+name: Sync Token Data
+
+# 触发条件
+on:
+  # 每小时执行一次（UTC 时间）
+  schedule:
+    - cron: '0 * * * *'
+
+  # 允许手动触发
+  workflow_dispatch:
+
+# 设置权限
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    name: 同步代币数据
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 检出代码
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      # 2. 设置 Node.js
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # 3. 安装依赖
+      - name: 安装依赖
+        run: |
+          npm install
+
+      # 4. 运行数据同步脚本
+      - name: 同步数据
+        env:
+          BASE_RPC_URL: ${{ secrets.BASE_RPC_URL }}
+        run: |
+          npm run sync
+
+      # 5. 提交并推送数据文件
+      - name: 提交数据
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/
+          git diff --staged --quiet || git commit -m "🔄 更新代币数据 [skip ci]"
+          git push

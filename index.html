@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base Token Monitor - Base 链代币持仓监控</title>
+    <meta name="description" content="监控 Base 链上 ERC20 代币的大户持仓变化">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">Base Token Monitor</h1>
+                <p class="tagline">Base 链代币持仓监控系统</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="main">
+        <div class="container">
+            <!-- 页面标题 -->
+            <section class="page-header">
+                <h2>监控代币列表</h2>
+                <p class="text-muted">选择一个代币查看详细信息</p>
+            </section>
+
+            <!-- 代币列表 -->
+            <section class="tokens-grid" id="tokensList">
+                <!-- 代币卡片将通过 JavaScript 动态加载 -->
+                <div class="loading">加载中...</div>
+            </section>
+
+            <!-- 添加代币说明 -->
+            <section class="info-card">
+                <h3>💡 如何添加新代币</h3>
+                <ol>
+                    <li>编辑 <code>tokens-config.json</code> 文件</li>
+                    <li>添加新代币的配置信息（地址、符号、精度）</li>
+                    <li>提交并推送到 GitHub</li>
+                    <li>GitHub Actions 会自动开始监控新代币</li>
+                </ol>
+            </section>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Base Token Monitor. 数据每小时自动更新</p>
+            <p class="text-muted">
+                最后更新: <span id="lastUpdate">加载中...</span> |
+                <a href="https://github.com/czhao1986716-glitch/-base-token-monitor" target="_blank">GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

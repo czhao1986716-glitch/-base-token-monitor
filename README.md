@@ -9,9 +9,9 @@
 - **🔍 持仓监控** - 实时追踪前 500 持币地址的持仓变化
 - **🐋 鲸鱼预警** - 自动检测大户的买卖行为并发出预警
 - **📊 数据可视化** - 黑白高端设计，清晰展示关键指标
-- **⏰ 自动更新** - 每小时自动同步数据（通过 Vercel Cron Jobs）
-- **🚀 零成本** - 完全免费部署在 Vercel，无需服务器
-- **🎨 精美 UI** - 基于 shadcn/ui 的高端黑白主题
+- **⏰ 自动更新** - 每小时自动同步数据（通过 GitHub Actions）
+- **🚀 零成本** - 完全免费部署在 GitHub Pages
+- **🎨 精美 UI** - 黑白高端主题，简洁大气
 - **📱 响应式** - 完美支持桌面和移动设备
 - **🔧 可扩展** - 支持监控多个代币，轻松添加新代币
 
@@ -20,7 +20,7 @@
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/your-username/base-token-monitor.git
+git clone https://github.com/czhao1986716-glitch/-base-token-monitor.git
 cd base-token-monitor
 ```
 
@@ -30,183 +30,188 @@ cd base-token-monitor
 npm install
 ```
 
-### 3. 配置环境变量
-
-复制 `.env.example` 到 `.env.local`：
+### 3. 本地运行数据同步
 
 ```bash
-cp .env.example .env.local
+npm run sync
 ```
 
-`.env.local` 内容：
+这将在 `data/` 目录生成代币数据文件。
 
-```env
-BASE_RPC_URL=https://mainnet.base.org
-```
+### 4. 本地预览（可选）
 
-### 4. 运行开发服务器
+由于是静态站点，您可以直接用浏览器打开 `index.html` 文件预览。
+
+或者使用简单的 HTTP 服务器：
 
 ```bash
-npm run dev
+# 使用 Python
+python -m http.server 8000
+
+# 或使用 Node.js
+npx serve .
+
+# 然后访问 http://localhost:8000
 ```
 
-打开 [http://localhost:3000](http://localhost:3000) 查看效果。
-
-## 📦 部署到 Vercel
+## 📦 部署到 GitHub Pages
 
 ### 方式 1: 一键部署（推荐）
 
-1. 点击下面的按钮一键部署：
+1. **Fork 本仓库**到您的 GitHub 账号
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyour-username%2Fbase-token-monitor)
+2. **启用 GitHub Pages**：
+   - 进入仓库的 **Settings** → **Pages**
+   - **Source** 选择：Deploy from a branch
+   - **Branch** 选择：`main` / `root`
+   - 点击 **Save**
 
-2. 在 Vercel 中：
-   - 连接你的 GitHub 账号
-   - Fork 这个仓库到你的账号
-   - 导入项目并部署
-   - Vercel 会自动创建并配置 KV 数据库
+3. **配置 GitHub Secrets**（可选）：
+   - 进入 **Settings** → **Secrets and variables** → **Actions**
+   - 添加以下 Secret（如果使用自定义 RPC）：
+     - Name: `BASE_RPC_URL`
+     - Value: `https://mainnet.base.org`（或其他 Base RPC URL）
+
+4. **启用 GitHub Actions**：
+   - 进入 **Actions** 标签
+   - 点击 **I understand my workflows, go ahead and enable them**
+
+5. **等待自动部署**：
+   - GitHub Actions 会自动运行数据同步脚本
+   - GitHub Pages 会自动部署站点
+   - 几分钟后访问您的站点：`https://您的用户名.github.io/-base-token-monitor/`
 
 ### 方式 2: 手动部署
 
-1. Fork 本仓库到你的 GitHub 账号
+1. **Fork 本仓库**
 
-2. 访问 [vercel.com](https://vercel.com) 并用 GitHub 登录
-
-3. 点击 "New Project" 并选择你 fork 的仓库
-
-4. 配置项目：
-   - **Framework Preset**: Next.js
-   - **Root Directory**: `./`
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `.next`
-
-5. 配置环境变量：
-   ```
-   BASE_RPC_URL=https://mainnet.base.org
+2. **在本地运行数据同步**：
+   ```bash
+   npm install
+   npm run sync
    ```
 
-6. 在 Vercel 项目设置中：
-   - 进入 "Storage" 标签
-   - 创建 "KV" 数据库
-   - Vercel 会自动添加所需的环境变量
+3. **提交数据文件**：
+   ```bash
+   git add data/
+   git commit -m "🔄 更新代币数据"
+   git push
+   ```
 
-7. 点击 "Deploy"
-
-8. 部署完成后，验证 Cron Jobs：
-   - 在 Vercel 项目设置中找到 "Cron Jobs"
-   - 确认 `/api/cron` 已配置为每天执行（免费账户限制）
-
-### ⚠️ Vercel 免费账户限制
-
-**Hobby（免费）账户限制**：
-- ✅ Cron Jobs: **每天最多 1 次**（当前配置为每天凌晨 0 点执行）
-- ✅ 手动同步：用户可随时点击"同步数据"按钮获取最新数据
-- ✅ 前端自动刷新：每分钟自动刷新显示的数据
-
-**如何获得更频繁的自动更新**：
-1. **方式 1：升级 Vercel Pro 账户** ($20/月)
-   - 解锁无限 Cron Jobs
-   - 可以设置为每小时或更频繁
-
-2. **方式 2：使用 GitHub Actions**（完全免费）
-   - 创建 GitHub Workflow 定期触发同步
-   - 可以设置为每小时或每 15 分钟
-   - 具体配置方法见下文
-
-3. **方式 3：手动同步**
-   - 在代币详情页点击"同步数据"按钮
-   - 或定时访问 `/api/cron` 端点
-
-### 使用 GitHub Actions 实现每小时同步（免费）
-
-1. 在项目根目录创建 `.github/workflows/sync.yml`：
-
-```yaml
-name: Sync Token Data
-
-on:
-  schedule:
-    # 每小时执行一次（UTC 时间）
-    - cron: '0 * * * *'
-  workflow_dispatch: # 允许手动触发
-
-jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger Vercel Cron
-        run: |
-          curl -X POST "https://你的项目地址.vercel.app/api/cron"
-```
-
-2. 提交并推送到 GitHub，Actions 会自动运行
+4. **启用 GitHub Pages**：
+   - 进入仓库 Settings → Pages
+   - 选择 Deploy from a branch
+   - 选择 main / root
+   - 保存
 
 ## 🎯 如何添加新代币
 
-编辑 `lib/tokens.ts` 文件：
+### 方法 1: 编辑配置文件（推荐）
 
-```typescript
-export const TOKENS: Token[] = [
+1. 编辑 `tokens-config.json` 文件：
+
+```json
+[
   {
-    symbol: 'clanker',
-    name: 'Clanker',
-    address: '0x1bc0c42215582d5A085795f4baDbaC3ff36d1Bcb',
-    decimals: 18,
+    "symbol": "clanker",
+    "name": "Clanker",
+    "address": "0x1bc0c42215582d5A085795f4baDbaC3ff36d1Bcb",
+    "decimals": 18
   },
-  // 添加新代币...
   {
-    symbol: 'your-token',
-    name: 'Your Token Name',
-    address: '0x...', // 代币合约地址
-    decimals: 18,     // 代币精度
-  },
+    "symbol": "your-token",
+    "name": "Your Token Name",
+    "address": "0x...",
+    "decimals": 18
+  }
 ]
 ```
 
-提交并推送到 GitHub，Vercel 会自动重新部署。
+2. 创建新代币的详情页：
+   - 复制 `pages/clanker.html`
+   - 重命名为 `pages/your-token.html`
+   - 修改页面中的代币符号和合约地址
+
+3. 修改 `js/app.js` 中的代币列表：
+   ```javascript
+   const tokens = [
+       {
+           symbol: 'clanker',
+           name: 'Clanker',
+           address: '0x1bc0c42215582d5A085795f4baDbaC3ff36d1Bcb',
+           page: 'pages/clanker.html'
+       },
+       {
+           symbol: 'your-token',
+           name: 'Your Token Name',
+           address: '0x...',
+           page: 'pages/your-token.html'
+       }
+   ];
+   ```
+
+4. 提交并推送到 GitHub，GitHub Actions 会自动开始监控新代币。
 
 ## 📁 项目结构
 
 ```
 base-token-monitor/
-├── app/
-│   ├── api/                # API 路由
-│   │   ├── holders/        # 获取持币地址
-│   │   ├── whale-alerts/   # 获取鲸鱼预警
-│   │   ├── sync/           # 手动同步数据
-│   │   └── cron/           # Cron Job 端点
-│   ├── [token]/            # 代币详情页（动态路由）
-│   ├── page.tsx            # 主页
-│   ├── layout.tsx          # 根布局
-│   └── globals.css         # 全局样式
-├── components/
-│   └── ui/                 # shadcn/ui 组件
-├── lib/
-│   ├── base.ts             # Base 链交互
-│   ├── kv.ts               # Vercel KV 封装
-│   ├── tokens.ts           # 代币配置
-│   └── utils.ts            # 工具函数
-├── types/
-│   └── index.ts            # TypeScript 类型
-├── public/                 # 静态资源
-├── package.json
-├── tsconfig.json
-├── tailwind.config.ts
-├── next.config.js
-└── vercel.json             # Vercel 配置
+├── index.html                # 主页（代币列表）
+├── pages/
+│   └── clanker.html         # 代币详情页
+├── css/
+│   └── style.css            # 黑白主题样式
+├── js/
+│   └── app.js               # 主页交互逻辑
+├── data/
+│   ├── clanker-stats.json   # clanker 统计数据
+│   ├── clanker-holders.json # clanker 持币数据
+│   └── clanker-alerts.json  # clanker 预警数据
+├── scripts/
+│   └── sync.js              # 数据同步脚本
+├── .github/
+│   └── workflows/
+│       └── sync-data.yml    # GitHub Actions（每小时更新）
+├── tokens-config.json       # 代币配置文件
+├── package.json             # 项目依赖
+└── README.md                # 项目文档
 ```
 
 ## 🔧 技术栈
 
-- **框架**: Next.js 14 (App Router)
-- **语言**: TypeScript
-- **样式**: Tailwind CSS
-- **组件**: shadcn/ui
-- **图表**: Recharts
-- **数据获取**: SWR
-- **区块链**: ethers.js v6
-- **存储**: Vercel KV (Redis)
-- **部署**: Vercel
+- **前端**: 纯 HTML + CSS + JavaScript（无框架）
+- **样式**: 自定义 CSS（黑白主题）
+- **区块链**: ethers.js v6（数据同步）
+- **自动化**: GitHub Actions
+- **部署**: GitHub Pages
+- **数据存储**: JSON 文件（Git 版本控制）
+
+## 💡 工作原理
+
+### 数据更新流程
+
+1. **GitHub Actions 定时触发**：
+   - 每小时自动运行一次（cron: `0 * * * *`）
+   - 也可手动触发
+
+2. **数据同步脚本执行**：
+   - 从 Base 链获取代币持币数据
+   - 生成统计数据和鲸鱼预警
+   - 保存为 JSON 文件到 `data/` 目录
+
+3. **自动提交和部署**：
+   - GitHub Actions 自动提交数据文件
+   - GitHub Pages 自动重新部署站点
+
+4. **前端展示**：
+   - 用户访问页面时，JavaScript 加载 JSON 数据
+   - 实时渲染持币表格、统计数据和预警列表
+
+### 数据文件说明
+
+- `*-stats.json`: 代币统计数据（持币数、集中度等）
+- `*-holders.json`: 前500持币地址列表
+- `*-alerts.json`: 鲸鱼预警列表
 
 ## 💡 使用说明
 
@@ -217,36 +222,39 @@ base-token-monitor/
    - 持币地址总数
    - 前 10 / 前 100 地址集中度
    - 最近鲸鱼预警
-   - 前 500 持币地址列表
+   - 前 500 持币地址表格
 
 ### 手动同步数据
 
-在任何代币详情页，点击 "同步数据" 按钮，立即获取最新数据。
-
-### 自动刷新
-
-数据每分钟自动刷新一次，无需手动操作。
+在 GitHub 仓库页面：
+1. 进入 **Actions** 标签
+2. 选择 **Sync Token Data** workflow
+3. 点击 **Run workflow** → **Run workflow**
 
 ## ⚠️ 注意事项
 
-1. **数据来源**：
-   - 当前使用模拟数据用于演示
-   - 生产环境需要接入真实的数据源（链上数据或第三方 API）
+### 当前使用模拟数据
 
-2. **获取真实数据**：
-   - 方案 1：使用 [The Graph](https://thegraph.com/) 构建子图
-   - 方案 2：使用第三方 API（如 DeBank、Arkham）
-   - 方案 3：自行运行索引节点
+由于直接从链上获取前500持币地址需要复杂的索引系统，当前版本使用模拟数据用于演示。
 
-3. **Vercel 限制**：
-   - 免费套餐：每月 100GB 带宽
-   - KV 免费额度：256MB 存储
-   - 对于大多数使用场景，这些限制足够
+### 接入真实数据的方法
 
-4. **性能优化**：
-   - 数据每小时自动同步，避免频繁的链上查询
-   - 使用 KV 缓存减少 API 响应时间
-   - 前端分页加载，提升用户体验
+**方案 1：使用第三方 API**
+- [DeBank API](https://open.debank.com/)
+- [Arkham API](https://platform.arkhamintelligence.com/)
+- [BaseScan API](https://docs.basescan.org/)
+
+**方案 2：构建 The Graph 子图**
+- 索引代币的 Transfer 事件
+- 查询前500持币地址
+- 适合高频查询
+
+**方案 3：自行运行索引节点**
+- 使用 ethers.js 监听 Transfer 事件
+- 存储到数据库（如 SQLite）
+- 适合完全控制数据
+
+修改 `scripts/sync.js` 中的 `generateMockData` 函数即可接入真实数据源。
 
 ## 📊 预警规则
 
@@ -260,6 +268,23 @@ base-token-monitor/
 - **高** (High): 前 10 大户的大额变动
 - **中** (Medium): 前 100 大户的中等变动
 - **低** (Low): 其他值得注意的变化
+
+## 🔄 更新频率
+
+- **自动更新**：每小时一次（通过 GitHub Actions）
+- **手动更新**：随时在 GitHub Actions 页面触发
+- **数据延迟**：通常小于 5 分钟
+
+## 🆚 对比 Vercel 方案
+
+| 特性 | GitHub Pages 方案 ✅ | Vercel 方案 |
+|------|---------------------|------------|
+| 更新频率 | 1次/小时 | 1次/天（免费）|
+| 数据存储 | JSON 文件 | Vercel KV |
+| 后端 API | 不需要 | 需要 |
+| 部署复杂度 | 简单 | 中等 |
+| 成本 | 完全免费 | 免费但有限制 |
+| 依赖服务 | 仅 GitHub | Vercel |
 
 ## 🤝 贡献
 
@@ -277,16 +302,14 @@ base-token-monitor/
 
 ## 🙏 致谢
 
-- [Next.js](https://nextjs.org/)
-- [Vercel](https://vercel.com/)
-- [shadcn/ui](https://ui.shadcn.com/)
+- [GitHub Pages](https://pages.github.com/)
+- [GitHub Actions](https://github.com/features/actions)
 - [ethers.js](https://docs.ethers.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
+- [Base](https://base.org/)
 
 ## 📮 联系方式
 
-- GitHub: [@your-username](https://github.com/your-username)
-- Twitter: [@your-twitter](https://twitter.com/your-twitter)
+- GitHub: [@czhao1986716-glitch](https://github.com/czhao1986716-glitch)
 
 ---
 
