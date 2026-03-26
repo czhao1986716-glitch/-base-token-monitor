@@ -30,7 +30,36 @@ cd base-token-monitor
 npm install
 ```
 
-### 3. 本地运行数据同步
+### 3. 配置 Moralis API Key
+
+**重要**: 本项目使用 Moralis API 获取真实的链上数据，需要免费 API Key。
+
+#### 获取 Moralis API Key（免费）
+
+1. 访问 [Moralis 官网](https://admin.moralis.io/register) 注册账户
+2. 登录后进入 [API Keys 页面](https://admin.moralis.io/apikeys)
+3.点击 "Create new API Key"
+4. 复制生成的 API Key
+
+#### 配置 API Key
+
+**本地开发**：
+```bash
+# 复制示例文件
+cp .env.example .env.local
+
+# 编辑 .env.local，粘贴您的 API Key
+# MORALIS_API_KEY=your_actual_api_key_here
+```
+
+**GitHub Actions 部署**：
+- 进入仓库的 **Settings** → **Secrets and variables** → **Actions**
+- 点击 **New repository secret**
+- Name: `MORALIS_API_KEY`
+- Value: 粘贴您的 API Key
+- 点击 **Add secret**
+
+### 4. 本地运行数据同步
 
 ```bash
 npm run sync
@@ -38,7 +67,7 @@ npm run sync
 
 这将在 `data/` 目录生成代币数据文件。
 
-### 4. 本地预览（可选）
+### 5. 本地预览（可选）
 
 由于是静态站点，您可以直接用浏览器打开 `index.html` 文件预览。
 
@@ -66,11 +95,14 @@ npx serve .
    - **Branch** 选择：`main` / `root`
    - 点击 **Save**
 
-3. **配置 GitHub Secrets**（可选）：
+3. **配置 Moralis API Key**（必需）：
    - 进入 **Settings** → **Secrets and variables** → **Actions**
-   - 添加以下 Secret（如果使用自定义 RPC）：
-     - Name: `BASE_RPC_URL`
-     - Value: `https://mainnet.base.org`（或其他 Base RPC URL）
+   - 点击 **New repository secret**
+   - **Name**: `MORALIS_API_KEY`
+   - **Value**: 粘贴您的 Moralis API Key
+   - 点击 **Add secret**
+
+   > 💡 如何获取 Moralis API Key？见上文 [第 3 步：配置 Moralis API Key](#3-配置-moralis-api-key)
 
 4. **启用 GitHub Actions**：
    - 进入 **Actions** 标签
@@ -233,41 +265,41 @@ base-token-monitor/
 
 ## ⚠️ 注意事项
 
-### 当前使用模拟数据
+### 数据源说明
 
-由于直接从链上获取前500持币地址需要复杂的索引系统，当前版本使用模拟数据用于演示。
+本项目使用 **Moralis API** 获取真实的链上持币数据，包括：
+- ✅ 前500大持币地址（实时数据）
+- ✅ 精确的持仓数量和占比
+- ✅ 基于真实数据的集中度分析
+- ✅ 智能鲸鱼预警（检测大户集中度）
 
-### 接入真实数据的方法
+**Moralis API 免费额度**：
+- 每月 40M 请求数
+- 每个代币每小时更新一次
+- 完全满足个人和小规模使用需求
 
-**方案 1：使用第三方 API**
-- [DeBank API](https://open.debank.com/)
-- [Arkham API](https://platform.arkhamintelligence.com/)
-- [BaseScan API](https://docs.basescan.org/)
+### 历史数据对比
 
-**方案 2：构建 The Graph 子图**
-- 索引代币的 Transfer 事件
-- 查询前500持币地址
-- 适合高频查询
+由于 Moralis 免费版不提供历史数据对比，当前版本的 `change_24h`（24小时变化）字段显示为 `0`。
 
-**方案 3：自行运行索引节点**
-- 使用 ethers.js 监听 Transfer 事件
-- 存储到数据库（如 SQLite）
-- 适合完全控制数据
-
-修改 `scripts/sync.js` 中的 `generateMockData` 函数即可接入真实数据源。
+如需历史对比功能，可以考虑：
+- 使用 Moralis Pro 版本
+- 自建数据库存储历史快照
+- 使用其他支持历史数据的 API
 
 ## 📊 预警规则
 
-系统会在以下情况生成预警：
+系统基于真实数据智能生成预警：
 
-- 前 10 地址持仓变化超过 **5%**
-- 前 100 地址持仓变化超过 **10%**
-- 单次变化金额超过 **100 万代币**
+- **高度集中预警**：前10地址集中度超过 50%
+- **超大庄家预警**：单个地址持仓超过 10%
+- **集中度预警**：前100地址集中度超过 80%
+- **统计信息**：持币地址总数统计
 
 预警级别：
-- **高** (High): 前 10 大户的大额变动
-- **中** (Medium): 前 100 大户的中等变动
-- **低** (Low): 其他值得注意的变化
+- **高** (High): 前10地址高度集中或超大庄家
+- **中** (Medium): 前100地址集中度较高
+- **低** (Low): 统计信息和提示
 
 ## 🔄 更新频率
 
