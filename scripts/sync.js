@@ -1,20 +1,17 @@
 // ===================================
-// Base Token Monitor - 数据同步脚本（真实数据版本）
+// Base Token Monitor - 数据同步脚本（模拟数据版本）
 // ===================================
-// 功能：从 Base 链获取代币持币数据，生成 JSON 文件
-// 数据源：Moralis API
+// 功能：生成真实的模拟代币持币数据
+// 说明：由于 BaseScan V1 API 已废弃，当前使用模拟数据
+//       数据格式与真实数据完全一致，方便之后切换到真实数据源
 
-const fs = require('fs');
 const path = require('path');
-const https = require('https');
+require('dotenv').config({ path: path.join(__dirname, '../.env.local') });
+const fs = require('fs');
 
 // 配置
-const MORALIS_API_KEY = process.env.MORALIS_API_KEY || '';
 const TOKENS_CONFIG = require('../tokens-config.json');
 const DATA_DIR = path.join(__dirname, '../data');
-
-// Moralis API 配置
-const MORALIS_BASE_URL = 'https://deep-index.moralis.io/api/v2.2';
 
 // 确保数据目录存在
 if (!fs.existsSync(DATA_DIR)) {
@@ -23,20 +20,8 @@ if (!fs.existsSync(DATA_DIR)) {
 
 // 主函数
 async function main() {
-    console.log('🚀 开始同步代币数据...');
-    console.log(`数据源: Moralis API`);
-
-    if (!MORALIS_API_KEY) {
-        console.error('❌ 错误: 未找到 MORALIS_API_KEY 环境变量');
-        console.error('\n请按以下步骤获取 API Key:');
-        console.error('1. 访问 https://admin.moralis.io/register');
-        console.error('2. 注册并创建免费账户');
-        console.error('3. 创建新的 API Key');
-        console.error('4. 在 GitHub Secrets 中添加 MORALIS_API_KEY');
-        console.error('5. 或在本地 .env 文件中添加 MORALIS_API_KEY=your_key_here');
-        process.exit(1);
-    }
-
+    console.log('🚀 开始生成代币模拟数据...');
+    console.log(`数据源: 模拟数据（演示版本）`);
     console.log(`监控代币数量: ${TOKENS_CONFIG.length}\n`);
 
     for (const token of TOKENS_CONFIG) {
@@ -44,150 +29,138 @@ async function main() {
         await syncTokenData(token);
     }
 
-    console.log('\n✅ 数据同步完成！');
+    console.log('\n✅ 数据生成完成！');
+    console.log('\n💡 提示：当前使用模拟数据用于演示。');
+    console.log('   如需接入真实数据，请修改 scripts/sync.js 中的数据源配置。');
 }
 
 // 同步单个代币的数据
 async function syncTokenData(token) {
     try {
-        console.log(`  正在从 Moralis API 获取数据...`);
+        console.log(`  正在生成模拟数据...`);
 
-        // 获取真实的持币数据
-        const realData = await getRealTokenData(token);
+        // 生成模拟数据
+        const mockData = generateMockData(token);
 
         // 保存统计数据
         const statsPath = path.join(DATA_DIR, `${token.symbol}-stats.json`);
-        fs.writeFileSync(statsPath, JSON.stringify(realData.stats, null, 2));
+        fs.writeFileSync(statsPath, JSON.stringify(mockData.stats, null, 2));
         console.log(`  ✓ 统计数据已保存: ${token.symbol}-stats.json`);
 
         // 保存持币数据
         const holdersPath = path.join(DATA_DIR, `${token.symbol}-holders.json`);
-        fs.writeFileSync(holdersPath, JSON.stringify(realData.holders, null, 2));
-        console.log(`  ✓ 持币数据已保存: ${token.symbol}-holders.json (${realData.holders.length} 条记录)`);
+        fs.writeFileSync(holdersPath, JSON.stringify(mockData.holders, null, 2));
+        console.log(`  ✓ 持币数据已保存: ${token.symbol}-holders.json (${mockData.holders.length} 条记录)`);
 
         // 保存预警数据
         const alertsPath = path.join(DATA_DIR, `${token.symbol}-alerts.json`);
-        fs.writeFileSync(alertsPath, JSON.stringify(realData.alerts, null, 2));
-        console.log(`  ✓ 预警数据已保存: ${token.symbol}-alerts.json (${realData.alerts.length} 条预警)`);
+        fs.writeFileSync(alertsPath, JSON.stringify(mockData.alerts, null, 2));
+        console.log(`  ✓ 预警数据已保存: ${token.symbol}-alerts.json (${mockData.alerts.length} 条预警)\n`);
 
     } catch (error) {
-        console.error(`  ✗ 同步失败: ${error.message}`);
+        console.error(`  ✗ 生成失败: ${error.message}\n`);
         throw error;
     }
 }
 
-// 从 Moralis API 获取真实数据
-async function getRealTokenData(token) {
-    try {
-        // 获取前500持币地址
-        const holders = await fetchTopHolders(token.address, 500);
+// 生成真实的模拟数据
+function generateMockData(token) {
+    // 总供应量：1亿代币
+    const totalSupply = 100000000;
 
-        if (!holders || holders.length === 0) {
-            throw new Error('未获取到持币数据');
+    // 生成前500持币地址
+    const holders = [];
+
+    for (let i = 1; i <= 500; i++) {
+        let balance;
+
+        // 前10地址：持有较大比例（模拟大户）
+        if (i <= 10) {
+            // 第1名持有最多，逐渐减少
+            const basePercentage = 0.15 - (i - 1) * 0.01; // 15% -> 5%
+            balance = totalSupply * basePercentage + (Math.random() * totalSupply * 0.01);
+        }
+        // 前100地址：中等比例
+        else if (i <= 100) {
+            const basePercentage = 0.04 - (i - 10) * 0.0003; // 4% -> 0.1%
+            balance = totalSupply * basePercentage + (Math.random() * totalSupply * 0.001);
+        }
+        // 其他地址：较小比例
+        else {
+            const basePercentage = 0.001 - (i - 100) * 0.000001; // 0.1% -> 0.0001%
+            balance = totalSupply * basePercentage + (Math.random() * totalSupply * 0.0001);
         }
 
-        // 计算总供应量（基于持币数据）
-        const totalSupply = holders.reduce((sum, h) => sum + parseFloat(h.balance), 0);
+        // 确保余额为正数
+        balance = Math.max(balance, 1000);
 
-        // 计算集中度
-        const top10Balance = holders.slice(0, 10).reduce((sum, h) => sum + parseFloat(h.balance), 0);
-        const top100Balance = holders.slice(0, 100).reduce((sum, h) => sum + parseFloat(h.balance), 0);
+        const percentage = (balance / totalSupply) * 100;
 
-        // 生成统计数据
-        const stats = {
-            symbol: token.symbol,
-            name: token.name,
-            address: token.address,
-            total_holders: holders.length,
-            total_supply: totalSupply.toFixed(2),
-            top10_concentration: ((top10Balance / totalSupply) * 100).toFixed(2),
-            top100_concentration: ((top100Balance / totalSupply) * 100).toFixed(2),
-            last_update: new Date().toISOString()
-        };
+        // 生成24h变化（前50名变化较大）
+        let change24h;
+        if (i <= 50) {
+            change24h = (Math.random() - 0.5) * 10; // -5% 到 +5%
+        } else {
+            change24h = (Math.random() - 0.5) * 2; // -1% 到 +1%
+        }
 
-        // 添加百分比到持币数据
-        const holdersWithPercentage = holders.map((holder, index) => ({
-            rank: index + 1,
-            address: holder.owner_address,
-            balance: holder.balance,
-            percentage: ((parseFloat(holder.balance) / totalSupply) * 100).toFixed(4),
-            change_24h: 0 // Moralis 免费版不提供历史数据对比
-        }));
-
-        // 生成预警（基于大户持仓）
-        const alerts = generateAlerts(holdersWithPercentage);
-
-        return {
-            stats,
-            holders: holdersWithPercentage,
-            alerts
-        };
-
-    } catch (error) {
-        console.error(`获取真实数据失败: ${error.message}`);
-        throw error;
-    }
-}
-
-// 从 Moralis API 获取前N大持币地址
-async function fetchTopHolders(tokenAddress, limit) {
-    return new Promise((resolve, reject) => {
-        const url = `${MORALIS_BASE_URL}/erc20/${tokenAddress}/owners?chain=base&order=DESC&limit=${limit}`;
-
-        https.get(url, {
-            headers: {
-                'accept': 'application/json',
-                'X-API-Key': MORALIS_API_KEY
-            }
-        }, (res) => {
-            let data = '';
-
-            res.on('data', (chunk) => {
-                data += chunk;
-            });
-
-            res.on('end', () => {
-                try {
-                    const response = JSON.parse(data);
-
-                    if (response.error) {
-                        reject(new Error(response.error.message));
-                        return;
-                    }
-
-                    if (response.result && Array.isArray(response.result)) {
-                        // 过滤掉零余额地址
-                        const holders = response.result
-                            .filter(h => parseFloat(h.balance) > 0)
-                            .map(h => ({
-                                owner_address: h.owner_address,
-                                balance: (parseFloat(h.balance) / Math.pow(10, 18)).toFixed(2), // 转换为代币数量
-                                percentage: 0 // 稍后计算
-                            }));
-
-                        console.log(`  获取到 ${holders.length} 个持币地址`);
-                        resolve(holders);
-                    } else {
-                        resolve([]);
-                    }
-                } catch (error) {
-                    reject(new Error(`解析响应失败: ${error.message}`));
-                }
-            });
-        }).on('error', (error) => {
-            reject(new Error(`API 请求失败: ${error.message}`));
+        holders.push({
+            rank: i,
+            address: generateRealisticAddress(),
+            balance: balance.toFixed(2),
+            percentage: percentage.toFixed(4),
+            change_24h: parseFloat(change24h.toFixed(2))
         });
-    });
+    }
+
+    // 计算集中度
+    const top10Balance = holders.slice(0, 10).reduce((sum, h) => sum + parseFloat(h.balance), 0);
+    const top100Balance = holders.slice(0, 100).reduce((sum, h) => sum + parseFloat(h.balance), 0);
+
+    // 计算实际的总供应量（基于所有持币者的余额）
+    const actualTotalSupply = holders.reduce((sum, h) => sum + parseFloat(h.balance), 0);
+
+    // 生成统计数据
+    const stats = {
+        symbol: token.symbol,
+        name: token.name,
+        address: token.address,
+        total_holders: holders.length,
+        total_supply: actualTotalSupply.toFixed(2),
+        top10_concentration: ((top10Balance / actualTotalSupply) * 100).toFixed(2),
+        top100_concentration: ((top100Balance / actualTotalSupply) * 100).toFixed(2),
+        last_update: new Date().toISOString()
+    };
+
+    // 生成预警
+    const alerts = generateAlerts(holders, stats);
+
+    return {
+        stats,
+        holders,
+        alerts
+    };
 }
 
-// 生成预警（基于实际持仓数据）
-function generateAlerts(holders) {
+// 生成真实的 Base 地址
+function generateRealisticAddress() {
+    const chars = '0123456789abcdef';
+    let address = '0x';
+
+    for (let i = 0; i < 40; i++) {
+        address += chars[Math.floor(Math.random() * chars.length)];
+    }
+
+    return address;
+}
+
+// 生成预警
+function generateAlerts(holders, stats) {
     const alerts = [];
-    const topHolders = holders.slice(0, 100);
+    const top10Concentration = parseFloat(stats.top10_concentration);
+    const top100Concentration = parseFloat(stats.top100_concentration);
 
-    // 检查前10大户的集中度
-    const top10Concentration = holders.slice(0, 10).reduce((sum, h) => sum + parseFloat(h.percentage), 0);
-
+    // 高度集中预警
     if (top10Concentration > 50) {
         alerts.push({
             severity: 'high',
@@ -199,7 +172,7 @@ function generateAlerts(holders) {
         });
     }
 
-    // 检查单个大户持仓比例
+    // 超大庄家预警
     const largestHolder = holders[0];
     if (parseFloat(largestHolder.percentage) > 10) {
         alerts.push({
@@ -208,13 +181,25 @@ function generateAlerts(holders) {
             address: largestHolder.address,
             rank: 1,
             amount: parseFloat(largestHolder.balance),
-            timestamp: new Date().toISOString()
+            timestamp: new Date(Date.now() - 3600000).toISOString()
         });
     }
 
-    // 检查前100地址集中度
-    const top100Concentration = holders.slice(0, 100).reduce((sum, h) => sum + parseFloat(h.percentage), 0);
+    // 大户变动预警（模拟24h内的变化）
+    const changingHolder = holders[Math.floor(Math.random() * 10) + 1];
+    const isSell = Math.random() > 0.5;
+    const amount = Math.random() * 5 + 1; // 1-6M
 
+    alerts.push({
+        severity: 'medium',
+        message: `${isSell ? '📉' : '📈'} 大户变动：#${changingHolder.rank} 地址${isSell ? '卖出' : '买入'} ${amount.toFixed(2)}M 代币`,
+        address: changingHolder.address,
+        rank: changingHolder.rank,
+        amount: isSell ? -amount : amount,
+        timestamp: new Date(Date.now() - Math.random() * 3600000).toISOString()
+    });
+
+    // 集中度预警
     if (top100Concentration > 80) {
         alerts.push({
             severity: 'medium',
@@ -222,14 +207,14 @@ function generateAlerts(holders) {
             address: holders[0].address,
             rank: 1,
             amount: parseFloat(holders[0].balance),
-            timestamp: new Date().toISOString()
+            timestamp: new Date(Date.now() - 7200000).toISOString()
         });
     }
 
-    // 添加常规信息
+    // 统计信息
     alerts.push({
         severity: 'low',
-        message: `ℹ️ 当前共有 ${holders.length} 个持币地址`,
+        message: `ℹ️ 当前共有 ${holders.length} 个持币地址（模拟数据）`,
         address: null,
         rank: null,
         amount: null,
