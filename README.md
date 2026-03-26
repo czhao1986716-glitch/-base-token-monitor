@@ -94,7 +94,52 @@ npm run dev
 
 8. 部署完成后，验证 Cron Jobs：
    - 在 Vercel 项目设置中找到 "Cron Jobs"
-   - 确认 `/api/cron` 已配置为每小时执行
+   - 确认 `/api/cron` 已配置为每天执行（免费账户限制）
+
+### ⚠️ Vercel 免费账户限制
+
+**Hobby（免费）账户限制**：
+- ✅ Cron Jobs: **每天最多 1 次**（当前配置为每天凌晨 0 点执行）
+- ✅ 手动同步：用户可随时点击"同步数据"按钮获取最新数据
+- ✅ 前端自动刷新：每分钟自动刷新显示的数据
+
+**如何获得更频繁的自动更新**：
+1. **方式 1：升级 Vercel Pro 账户** ($20/月)
+   - 解锁无限 Cron Jobs
+   - 可以设置为每小时或更频繁
+
+2. **方式 2：使用 GitHub Actions**（完全免费）
+   - 创建 GitHub Workflow 定期触发同步
+   - 可以设置为每小时或每 15 分钟
+   - 具体配置方法见下文
+
+3. **方式 3：手动同步**
+   - 在代币详情页点击"同步数据"按钮
+   - 或定时访问 `/api/cron` 端点
+
+### 使用 GitHub Actions 实现每小时同步（免费）
+
+1. 在项目根目录创建 `.github/workflows/sync.yml`：
+
+```yaml
+name: Sync Token Data
+
+on:
+  schedule:
+    # 每小时执行一次（UTC 时间）
+    - cron: '0 * * * *'
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel Cron
+        run: |
+          curl -X POST "https://你的项目地址.vercel.app/api/cron"
+```
+
+2. 提交并推送到 GitHub，Actions 会自动运行
 
 ## 🎯 如何添加新代币
 

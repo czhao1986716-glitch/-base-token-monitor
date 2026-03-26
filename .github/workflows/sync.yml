@@ -1,0 +1,45 @@
+name: Sync Token Data
+
+# 触发条件
+on:
+  # 每小时执行一次（UTC 时间）
+  schedule:
+    - cron: '0 * * * *'
+
+  # 允许手动触发
+  workflow_dispatch:
+
+# 设置权限
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    name: 同步代币数据
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 同步所有代币数据
+        run: |
+          echo "开始同步代币数据..."
+          echo "注意：请在部署后更新下面的 URL"
+
+          # TODO: 替换为你的实际部署 URL
+          DEPLOY_URL="https://你的项目地址.vercel.app/api/cron"
+
+          # 发送 POST 请求触发同步
+          response=$(curl -X POST "$DEPLOY_URL" -w "\n%{http_code}" -s)
+
+          # 分离响应体和状态码
+          http_code=$(echo "$response" | tail -n1)
+          body=$(echo "$response" | head -n-1)
+
+          echo "HTTP 状态码: $http_code"
+          echo "响应: $body"
+
+          if [ "$http_code" -eq 200 ]; then
+            echo "✅ 数据同步成功！"
+          else
+            echo "❌ 数据同步失败！"
+            exit 1
+          fi
