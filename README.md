@@ -43,14 +43,17 @@ npm install
 
 #### 配置 API Key
 
-**本地开发**：
+**方式 1：本地配置（推荐）**
 ```bash
 # 复制示例文件
 cp .env.example .env.local
 
-# 编辑 .env.local，粘贴您的 API Key
-# MORALIS_API_KEY=your_actual_api_key_here
+# 编辑 .env.local，添加您的 API Key
+MORALIS_API_KEY=your_actual_api_key_here
 ```
+
+**方式 2：直接修改 sync.js**
+如果不想配置环境变量，可以直接在 `scripts/sync.js` 第 17 行修改 `MORALIS_API_KEY` 变量的值。
 
 **GitHub Actions 部署**：
 - 进入仓库的 **Settings** → **Secrets and variables** → **Actions**
@@ -267,42 +270,49 @@ base-token-monitor/
 
 ### 数据源说明
 
-**当前状态：使用模拟数据**
+**当前状态：使用真实链上数据** ✅
 
-由于以下技术限制，项目当前使用**高质量的模拟数据**：
-- ❌ BaseScan V1 API 已废弃（返回错误消息而非数据）
-- ❌ BaseScan V2 API 尚未完全实现
-- ❌ Moralis/Ankr 等第三方 API 需要 API Key 配置
-- ❌ 直接从链上获取数据速度太慢（需要数小时）
+本项目已成功接入 **Moralis API**，获取真实的 Base 链代币持币数据：
 
-**模拟数据特点**：
-- ✅ 数据格式与真实数据**完全一致**
-- ✅ 数量级和分布**真实合理**
-- ✅ 包含完整的统计、预警和24h变化
-- ✅ 可正常演示所有功能
+**数据特点**：
+- ✅ **100% 真实数据**：直接从 Base 链获取
+- ✅ **实时更新**：每小时自动同步最新数据
+- ✅ **完整信息**：包含持仓量、占比、USD 价值、合约标识
+- ✅ **高精度**：使用 Moralis API v2.2，数据准确可靠
 
-### 接入真实数据的方法
+**数据来源**：
+- API 提供商：[Moralis](https://moralis.io/)
+- API 版本：v2.2
+- 免费额度：每月 40M 请求
+- 数据延迟：通常小于 1 分钟
 
-当有可用的数据源时，只需修改 `scripts/sync.js` 中的数据生成函数即可。推荐的数据源：
+### 如何获取真实数据
 
-**方案 1：等待 BaseScan V2 API**
-- BaseScan V2 API 正在开发中
-- 预计将提供完整的持币地址查询接口
-- 关注 https://docs.etherscan.io/v2-migration
+1. **获取 Moralis API Key**：
+   - 访问 [Moralis 官网](https://admin.moralis.io/register) 注册免费账户
+   - 进入 [API Keys 页面](https://admin.moralis.io/apikeys) 创建 API Key
 
-**方案 2：使用第三方 API（需要 API Key）**
-- [Moralis API](https://moralis.io/) - 每月 40M 免费请求
+2. **配置 API Key**：
+   - 本地开发：在 `.env.local` 中添加 `MORALIS_API_KEY=your_key_here`
+   - 或直接修改 `scripts/sync.js` 第 17 行
+
+3. **运行数据同步**：
+   ```bash
+   npm run sync
+   ```
+
+### 备选数据源
+
+如果 Moralis API 无法使用，可以考虑以下替代方案：
+
+**方案 1：使用其他第三方 API（需要 API Key）**
 - [Ankr Advanced API](https://www.ankr.com/) - 每月 10M 免费请求
 - [Covalent API](https://www.covalenthq.com/) - 每月 10M 免费请求
 
-**方案 3：自建数据索引系统**
+**方案 2：自建数据索引系统**
 - 使用 The Graph 索引 Base 链数据
 - 或使用 ethers.js 监听 Transfer 事件
 - 需要服务器和数据库支持
-
-### 历史数据对比
-
-当前模拟数据包含**真实的24h变化模拟**（前50名地址变化较大，后续地址变化较小）。
 
 ## 📊 预警规则
 
