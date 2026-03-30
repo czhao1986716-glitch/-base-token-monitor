@@ -1,42 +1,42 @@
 [
   {
     "severity": "low",
-    "message": "ℹ️ 当前共有 40 个持币地址（数据来源：Base 链 RPC，100% 准确）",
+    "message": "ℹ️ 当前共有 38 个持币地址（数据来源：Base 链 RPC，100% 准确）",
     "address": null,
     "rank": null,
     "amount": null,
-    "timestamp": "2026-03-29T02:29:18.905Z"
+    "timestamp": "2026-03-30T02:31:46.876Z"
   },
   {
     "severity": "high",
-    "message": "🔴 超大庄家地址：#1 地址持有 33.49% 的代币",
+    "message": "🔴 超大庄家地址：#1 地址持有 29.52% 的代币",
     "address": "0x8d4ab2a3e89eadfdc729204adf863a0bfc7746f6",
     "rank": 1,
-    "amount": 140019.98,
-    "timestamp": "2026-03-29T02:29:18.905Z"
+    "amount": 140071.27,
+    "timestamp": "2026-03-30T02:31:46.877Z"
   },
   {
     "severity": "high",
-    "message": "⚠️ 高度集中：前10地址持有 94.77% 的代币，流动性高度集中",
+    "message": "⚠️ 高度集中：前10地址持有 94.26% 的代币，流动性高度集中",
     "address": "0x8d4ab2a3e89eadfdc729204adf863a0bfc7746f6",
     "rank": 1,
-    "amount": 140019.98,
-    "timestamp": "2026-03-29T02:29:18.905Z"
+    "amount": 140071.27,
+    "timestamp": "2026-03-30T02:31:46.877Z"
   },
   {
     "severity": "medium",
     "message": "📊 前100地址集中度：100%，流动性较为集中",
     "address": "0x8d4ab2a3e89eadfdc729204adf863a0bfc7746f6",
     "rank": 1,
-    "amount": 140019.98,
-    "timestamp": "2026-03-29T02:29:18.905Z"
+    "amount": 140071.27,
+    "timestamp": "2026-03-30T02:31:46.877Z"
   },
   {
     "severity": "low",
-    "message": "📝 前40地址中有 8 个合约地址",
+    "message": "📝 前38地址中有 6 个合约地址",
     "address": null,
     "rank": null,
     "amount": null,
-    "timestamp": "2026-03-29T02:29:18.905Z"
+    "timestamp": "2026-03-30T02:31:46.877Z"
   }
 ]
