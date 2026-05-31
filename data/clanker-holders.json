@@ -3,7 +3,7 @@
     "rank": 1,
     "address": "0x8d4ab2a3e89eadfdc729204adf863a0bfc7746f6",
     "balance": "140447.52",
-    "percentage": "33.7477",
+    "percentage": "29.4403",
     "change_24h": 0,
     "raw_data": {
       "balance": "140447522388559055260316",
@@ -14,7 +14,7 @@
     "rank": 2,
     "address": "0x46a830062405992852186b904af5ac321a50d684",
     "balance": "84732.00",
-    "percentage": "20.3600",
+    "percentage": "17.7613",
     "change_24h": 0,
     "raw_data": {
       "balance": "84732001315775287701929",
@@ -24,11 +24,11 @@
   {
     "rank": 3,
     "address": "0xc1a6fbedae68e1472dbb91fe29b51f7a0bd44f97",
-    "balance": "81779.34",
-    "percentage": "19.6505",
+    "balance": "80673.91",
+    "percentage": "16.9107",
     "change_24h": 0,
     "raw_data": {
-      "balance": "81779336188764724721089",
+      "balance": "80673908924310244547781",
       "is_contract": true
     }
   },
@@ -36,7 +36,7 @@
     "rank": 4,
     "address": "0xeee260644e8891a28e2de8b5319cd4b00a4a2191",
     "balance": "75118.10",
-    "percentage": "18.0499",
+    "percentage": "15.7461",
     "change_24h": 0,
     "raw_data": {
       "balance": "75118102742276381360941",
@@ -45,9 +45,64 @@
   },
   {
     "rank": 5,
+    "address": "0x000000000000000000000000000000000000dead",
+    "balance": "13722.74",
+    "percentage": "2.8765",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "13722743401860168150666",
+      "is_contract": false
+    }
+  },
+  {
+    "rank": 6,
+    "address": "0xd23fe2db317e1a96454a2d1c7e8fc0dbf19bb000",
+    "balance": "13001.91",
+    "percentage": "2.7254",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "13001910991829743488491",
+      "is_contract": true
+    }
+  },
+  {
+    "rank": 7,
+    "address": "0x2cde9919e81b20b4b33dd562a48a84b54c48f00c",
+    "balance": "13000.00",
+    "percentage": "2.7250",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "13000000000000000000000",
+      "is_contract": true
+    }
+  },
+  {
+    "rank": 8,
+    "address": "0x20fe51a9229eef2cf8ad9e89d91cab9312cf3b7a",
+    "balance": "11010.56",
+    "percentage": "2.3080",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "11010557163933311117729",
+      "is_contract": false
+    }
+  },
+  {
+    "rank": 9,
+    "address": "0x58918db69302e21e0478c97f20de9153b9ee92d6",
+    "balance": "10039.03",
+    "percentage": "2.1044",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "10039028152250400714088",
+      "is_contract": false
+    }
+  },
+  {
+    "rank": 10,
     "address": "0x0ae0b5594da29f0d3e08bbcdf007579d3bb5fd52",
     "balance": "2624.54",
-    "percentage": "0.6306",
+    "percentage": "0.5501",
     "change_24h": 0,
     "raw_data": {
       "balance": "2624539898035786916303",
@@ -55,10 +110,10 @@
     }
   },
   {
-    "rank": 6,
+    "rank": 11,
     "address": "0x4d9d037601ed464fffc736d88277be18829ecb0c",
     "balance": "2623.41",
-    "percentage": "0.6304",
+    "percentage": "0.5499",
     "change_24h": 0,
     "raw_data": {
       "balance": "2623408040892342614580",
@@ -66,21 +121,10 @@
     }
   },
   {
-    "rank": 7,
-    "address": "0x6a65aecfd33dfd5c4dcdca1ced118b820a1b72d7",
-    "balance": "2620.00",
-    "percentage": "0.6296",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "2620000000000000000000",
-      "is_contract": false
-    }
-  },
-  {
-    "rank": 8,
+    "rank": 12,
     "address": "0xc1ac9afb8b8a38d3a2e96ed32feb354165f900b4",
     "balance": "2619.09",
-    "percentage": "0.6293",
+    "percentage": "0.5490",
     "change_24h": 0,
     "raw_data": {
       "balance": "2619088092000000000000",
@@ -88,10 +132,10 @@
     }
   },
   {
-    "rank": 9,
+    "rank": 13,
     "address": "0x109c7c75edb45bb247b30195347a416fbb4fe286",
     "balance": "2602.10",
-    "percentage": "0.6253",
+    "percentage": "0.5454",
     "change_24h": 0,
     "raw_data": {
       "balance": "2602098214109214448834",
@@ -99,197 +143,186 @@
     }
   },
   {
-    "rank": 10,
-    "address": "0x75fb62aa7d072a6a96692b207278a760e5df42cc",
-    "balance": "1253.93",
-    "percentage": "0.3013",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "1253925802514089194792",
-      "is_contract": true
-    }
-  },
-  {
-    "rank": 11,
-    "address": "0x96245e3bca44106e4b005dba0470e7a89315dc8f",
-    "balance": "1250.22",
-    "percentage": "0.3004",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "1250221956778989858884",
-      "is_contract": false
-    }
-  },
-  {
-    "rank": 12,
-    "address": "0xca7c767854b1e7305de07247ab85e30543d1d9c9",
-    "balance": "1249.50",
-    "percentage": "0.3002",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "1249503507570027487036",
-      "is_contract": false
-    }
-  },
-  {
-    "rank": 13,
-    "address": "0x6be61fd375e4ac4df6334413f4761caac46d1840",
-    "balance": "1232.45",
-    "percentage": "0.2961",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "1232450411026081971888",
-      "is_contract": false
-    }
-  },
-  {
     "rank": 14,
-    "address": "0xbc90bd26b6f69b7b9b7698ba3c4b2c7f76d710af",
-    "balance": "1227.10",
-    "percentage": "0.2949",
+    "address": "0x28e5d92148aa12b0fccd268ff643be86bbb5265e",
+    "balance": "2586.52",
+    "percentage": "0.5422",
     "change_24h": 0,
     "raw_data": {
-      "balance": "1227099154263089917818",
-      "is_contract": true
+      "balance": "2586518475918657698106",
+      "is_contract": false
     }
   },
   {
     "rank": 15,
-    "address": "0x44551ca46fa5592bb572e20043f7c3d54c85cad7",
-    "balance": "812.56",
-    "percentage": "0.1952",
+    "address": "0xdfd27839961f9787cef4bdc31e45fe7aba858d26",
+    "balance": "1458.18",
+    "percentage": "0.3057",
     "change_24h": 0,
     "raw_data": {
-      "balance": "812556030902058361075",
+      "balance": "1458182662760459762313",
       "is_contract": true
     }
   },
   {
     "rank": 16,
-    "address": "0x4ea52a33c31838c18aa7b86ea606030d34b76586",
-    "balance": "800.00",
-    "percentage": "0.1922",
+    "address": "0xc06156b98f04727ed5137b51a728509128d3bc03",
+    "balance": "1444.93",
+    "percentage": "0.3029",
     "change_24h": 0,
     "raw_data": {
-      "balance": "799997085153700000000",
-      "is_contract": false
+      "balance": "1444926308477241408731",
+      "is_contract": true
     }
   },
   {
     "rank": 17,
-    "address": "0x89f08e291c85c873f7110de49bfd7b20a96a45b8",
-    "balance": "791.00",
-    "percentage": "0.1901",
+    "address": "0x6a65aecfd33dfd5c4dcdca1ced118b820a1b72d7",
+    "balance": "1363.72",
+    "percentage": "0.2859",
     "change_24h": 0,
     "raw_data": {
-      "balance": "790999769601392731568",
+      "balance": "1363718592964824100000",
       "is_contract": false
     }
   },
   {
     "rank": 18,
-    "address": "0xb8e6d31e7b212b2b7250ee9c26c56cebbfbe6b23",
-    "balance": "781.91",
-    "percentage": "0.1879",
+    "address": "0x61afa5e5d7e1a70a537dc5b8252d64c8a1d92c6d",
+    "balance": "1327.09",
+    "percentage": "0.2782",
     "change_24h": 0,
     "raw_data": {
-      "balance": "781914830653635862558",
-      "is_contract": true
+      "balance": "1327087386000354165772",
+      "is_contract": false
     }
   },
   {
     "rank": 19,
-    "address": "0xf89b8563420116ac20b68930e8da28cdc9024393",
-    "balance": "769.51",
-    "percentage": "0.1849",
+    "address": "0x15da7556d5ed888306839bed06f868aeaedcb0d7",
+    "balance": "1289.45",
+    "percentage": "0.2703",
     "change_24h": 0,
     "raw_data": {
-      "balance": "769508648462595937240",
+      "balance": "1289450000000000000000",
       "is_contract": false
     }
   },
   {
     "rank": 20,
-    "address": "0x98397a068d413d3c92a506f98c5f25d33a9dac14",
-    "balance": "485.20",
-    "percentage": "0.1166",
+    "address": "0x5688cbfd16d49c16d89f24f8787d264731ee1273",
+    "balance": "1075.21",
+    "percentage": "0.2254",
     "change_24h": 0,
     "raw_data": {
-      "balance": "485203761396852243857",
+      "balance": "1075213850118366982895",
       "is_contract": false
     }
   },
   {
     "rank": 21,
-    "address": "0xad69b56ccf3ba166ce81d13c49cfa72ea27339db",
-    "balance": "479.70",
-    "percentage": "0.1153",
+    "address": "0x504ce9e51e508c85a161058c12e970a903d482fc",
+    "balance": "1067.08",
+    "percentage": "0.2237",
     "change_24h": 0,
     "raw_data": {
-      "balance": "479699397957502057625",
+      "balance": "1067076546700000000000",
       "is_contract": false
     }
   },
   {
     "rank": 22,
-    "address": "0x90632858ac76ac03713e74d1c56d67437d647cee",
-    "balance": "473.65",
-    "percentage": "0.1138",
+    "address": "0x0e6ac57fa9352f0ebfe697cd6eb4b41612050317",
+    "balance": "1009.58",
+    "percentage": "0.2116",
     "change_24h": 0,
     "raw_data": {
-      "balance": "473646066711055587983",
-      "is_contract": false
+      "balance": "1009582042623131939158",
+      "is_contract": true
     }
   },
   {
     "rank": 23,
-    "address": "0x248c2a19e5a2f652f4b09b9e71b86aa04c3f32f6",
-    "balance": "472.56",
-    "percentage": "0.1135",
+    "address": "0xcc282e2004428939ee5149a9e7872f0b4d5d5ec7",
+    "balance": "1007.90",
+    "percentage": "0.2113",
     "change_24h": 0,
     "raw_data": {
-      "balance": "472559881450230355865",
+      "balance": "1007898223900000000000",
       "is_contract": false
     }
   },
   {
     "rank": 24,
-    "address": "0x0c323730b96732d9e2a354863af9bbfce539b10d",
-    "balance": "450.18",
-    "percentage": "0.1082",
+    "address": "0x9bba94945f39a276c001441258fdb0d961f77ad8",
+    "balance": "1001.31",
+    "percentage": "0.2099",
     "change_24h": 0,
     "raw_data": {
-      "balance": "450178427252111177185",
+      "balance": "1001312467177527171694",
       "is_contract": false
     }
   },
   {
     "rank": 25,
-    "address": "0x085d279039128f6dc81857a9eca712799168e361",
-    "balance": "383.95",
-    "percentage": "0.0923",
+    "address": "0xef73c5e0cba2d03a7dd66012ca4375502ef6f7aa",
+    "balance": "600.86",
+    "percentage": "0.1260",
     "change_24h": 0,
     "raw_data": {
-      "balance": "383953508961963911989",
+      "balance": "600864792618147056595",
       "is_contract": false
     }
   },
   {
     "rank": 26,
-    "address": "0x9fe37742b5a4dd3e0d777f9a22acca9d16a2c098",
-    "balance": "376.14",
-    "percentage": "0.0904",
+    "address": "0x6b65eff428a3c224e7cacc547795d3c1f15fce79",
+    "balance": "598.54",
+    "percentage": "0.1255",
     "change_24h": 0,
     "raw_data": {
-      "balance": "376136354715678801763",
+      "balance": "598543117567732183378",
       "is_contract": false
     }
   },
   {
     "rank": 27,
+    "address": "0x7bacf95e95b9032c1a37830d48efaf66a9bd2c30",
+    "balance": "589.29",
+    "percentage": "0.1235",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "589291029917563166848",
+      "is_contract": false
+    }
+  },
+  {
+    "rank": 28,
+    "address": "0xf8c1a2ca1496f318067594a76c0276b29deca6fb",
+    "balance": "577.10",
+    "percentage": "0.1210",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "577100835208824753280",
+      "is_contract": true
+    }
+  },
+  {
+    "rank": 29,
+    "address": "0x024045e87ebdc93ee190a2e60c7dc6c501a5893c",
+    "balance": "573.16",
+    "percentage": "0.1201",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "573161000000000000000",
+      "is_contract": false
+    }
+  },
+  {
+    "rank": 30,
     "address": "0xe97392dfa4c71c9b0dceb19c6a476835fda56397",
     "balance": "373.31",
-    "percentage": "0.0897",
+    "percentage": "0.0783",
     "change_24h": 0,
     "raw_data": {
       "balance": "373306565578243705689",
@@ -297,10 +330,10 @@
     }
   },
   {
-    "rank": 28,
+    "rank": 31,
     "address": "0xc964a73bde38e2758fa9638bbf9a54431f31339d",
     "balance": "363.56",
-    "percentage": "0.0874",
+    "percentage": "0.0762",
     "change_24h": 0,
     "raw_data": {
       "balance": "363561300000000000000",
@@ -308,10 +341,10 @@
     }
   },
   {
-    "rank": 29,
+    "rank": 32,
     "address": "0xaaa3bfb53d5d5116faedc5dd457531f8465f78af",
     "balance": "354.74",
-    "percentage": "0.0852",
+    "percentage": "0.0744",
     "change_24h": 0,
     "raw_data": {
       "balance": "354742419363510491776",
@@ -319,175 +352,164 @@
     }
   },
   {
-    "rank": 30,
-    "address": "0x9cd0e36a46b9675787ff160e6f5b7f9fb21540a5",
-    "balance": "276.90",
-    "percentage": "0.0665",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "276899850120628411278",
-      "is_contract": false
-    }
-  },
-  {
-    "rank": 31,
-    "address": "0xce6117c74ac2059cf22f86f3559d895d80be2357",
-    "balance": "275.65",
-    "percentage": "0.0662",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "275653565876114532076",
-      "is_contract": true
-    }
-  },
-  {
-    "rank": 32,
-    "address": "0xb51bf9029d778899d42e96ebcdc0498bd061006d",
-    "balance": "274.96",
-    "percentage": "0.0661",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "274963420000000000000",
-      "is_contract": false
-    }
-  },
-  {
     "rank": 33,
-    "address": "0x199b8f1f8e4a71a8b1595aa50daba17970407497",
-    "balance": "274.34",
-    "percentage": "0.0659",
+    "address": "0xf48e94ab3bf4cab38ad31f62b9fb23c30f55fd58",
+    "balance": "354.40",
+    "percentage": "0.0743",
     "change_24h": 0,
     "raw_data": {
-      "balance": "274336023623895219175",
+      "balance": "354400727507845881801",
       "is_contract": false
     }
   },
   {
     "rank": 34,
-    "address": "0xc5ae2abb47517b65213d4aa9f5f204b758850bbd",
-    "balance": "272.56",
-    "percentage": "0.0655",
+    "address": "0x2f4ba8a9d9daf9a9c82b003b641298469c5aad48",
+    "balance": "353.53",
+    "percentage": "0.0741",
     "change_24h": 0,
     "raw_data": {
-      "balance": "272560230331467542554",
+      "balance": "353529308117499725932",
       "is_contract": false
     }
   },
   {
     "rank": 35,
-    "address": "0x6ff21069dce762a9f12b6622c4321731ba19be7b",
-    "balance": "223.26",
-    "percentage": "0.0536",
+    "address": "0x303909d1e0b22d61b2de4b2ecb2e62599945639a",
+    "balance": "253.70",
+    "percentage": "0.0532",
     "change_24h": 0,
     "raw_data": {
-      "balance": "223264658376726187835",
+      "balance": "253701387585876967602",
       "is_contract": false
     }
   },
   {
     "rank": 36,
-    "address": "0xf6fb2a7f3f85aaf1bff9205465a051b537a7fd7c",
-    "balance": "222.13",
-    "percentage": "0.0534",
+    "address": "0x53acecb0a49706ebe52f6c64f0e7ce32a155019a",
+    "balance": "252.30",
+    "percentage": "0.0529",
     "change_24h": 0,
     "raw_data": {
-      "balance": "222126403930674141159",
+      "balance": "252303241645138553598",
       "is_contract": false
     }
   },
   {
     "rank": 37,
-    "address": "0x1f238b47ab9fd915e5852601e83c6c1358297870",
-    "balance": "221.70",
-    "percentage": "0.0533",
+    "address": "0x700c102d584d6e4d61eaa2282680211e91fb4c6a",
+    "balance": "251.53",
+    "percentage": "0.0527",
     "change_24h": 0,
     "raw_data": {
-      "balance": "221703732270162246524",
-      "is_contract": false
+      "balance": "251525801020429344091",
+      "is_contract": true
     }
   },
   {
     "rank": 38,
-    "address": "0x6b6ca48da27304eeeb1d15d355d948f68b852733",
-    "balance": "220.35",
-    "percentage": "0.0529",
+    "address": "0x040bab597c4eb1d1ba12a3ec0826985879e7a94d",
+    "balance": "250.67",
+    "percentage": "0.0525",
     "change_24h": 0,
     "raw_data": {
-      "balance": "220350205729362352002",
+      "balance": "250674243660744220628",
       "is_contract": false
     }
   },
   {
     "rank": 39,
-    "address": "0x6ea08ca8f313d860808ef7431fc72c6fbcf4a72d",
-    "balance": "219.04",
-    "percentage": "0.0526",
+    "address": "0x1051a51c5c2016d15228f4fba52935ab44f8a1ee",
+    "balance": "248.26",
+    "percentage": "0.0520",
     "change_24h": 0,
     "raw_data": {
-      "balance": "219037459734200047448",
+      "balance": "248259431666692248465",
       "is_contract": false
     }
   },
   {
     "rank": 40,
-    "address": "0xd7fe547e4862d31a177f27752c6ccc55560b1910",
-    "balance": "197.32",
-    "percentage": "0.0474",
+    "address": "0x69239747a8329cfd117c673a7673152f32cfb834",
+    "balance": "200.00",
+    "percentage": "0.0419",
     "change_24h": 0,
     "raw_data": {
-      "balance": "197323070473505764132",
+      "balance": "200000000148655906505",
       "is_contract": false
     }
   },
   {
     "rank": 41,
-    "address": "0x9776cbecf431869d7cce96819131476c2e0f4ed5",
-    "balance": "196.71",
-    "percentage": "0.0473",
+    "address": "0xe1ade71dbb81237479ad3648c1b81f81eccb6a25",
+    "balance": "200.00",
+    "percentage": "0.0419",
     "change_24h": 0,
     "raw_data": {
-      "balance": "196705251174500000000",
+      "balance": "200000000000000000000",
       "is_contract": false
     }
   },
   {
     "rank": 42,
-    "address": "0xfd3dd3b9fd276d4e1fbc0b6133481d0e953bd703",
-    "balance": "196.59",
-    "percentage": "0.0472",
+    "address": "0xb3af88f40dcb2934a8ad026ee6084aea4628910a",
+    "balance": "200.00",
+    "percentage": "0.0419",
     "change_24h": 0,
     "raw_data": {
-      "balance": "196591450854701927624",
-      "is_contract": true
+      "balance": "200000000000000000000",
+      "is_contract": false
     }
   },
   {
     "rank": 43,
-    "address": "0xfc89c020774524c9d03bd5de48fec149b10bdec3",
-    "balance": "193.61",
-    "percentage": "0.0465",
+    "address": "0xafe4043c9ffd31753c5be2b76dfc45aaa70ebd6f",
+    "balance": "200.00",
+    "percentage": "0.0419",
     "change_24h": 0,
     "raw_data": {
-      "balance": "193610619000000000000",
+      "balance": "200000000000000000000",
       "is_contract": false
     }
   },
   {
     "rank": 44,
-    "address": "0x54eb71a6a530a0c44c8f2ce756286c21000923f7",
-    "balance": "190.84",
-    "percentage": "0.0459",
+    "address": "0x9dbe078cb4c73069aa155fbbd28ca197755be734",
+    "balance": "200.00",
+    "percentage": "0.0419",
     "change_24h": 0,
     "raw_data": {
-      "balance": "190835482388898083807",
+      "balance": "200000000000000000000",
       "is_contract": false
     }
   },
   {
     "rank": 45,
+    "address": "0x095a9fb7a06a5a9e28f0fcbe7ce04abd38017091",
+    "balance": "171.76",
+    "percentage": "0.0360",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "171762726119241500466",
+      "is_contract": false
+    }
+  },
+  {
+    "rank": 46,
+    "address": "0xed841526a8c7c90e30369afb363c3b6153311004",
+    "balance": "171.56",
+    "percentage": "0.0360",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "171561439332081921239",
+      "is_contract": true
+    }
+  },
+  {
+    "rank": 47,
     "address": "0x5fbeb5e603c80433339f699903372e45a525c756",
     "balance": "169.13",
-    "percentage": "0.0406",
+    "percentage": "0.0355",
     "change_24h": 0,
     "raw_data": {
       "balance": "169130625900000000000",
@@ -495,10 +517,10 @@
     }
   },
   {
-    "rank": 46,
+    "rank": 48,
     "address": "0xa61d0dcc56e42ffab4f27140172067cf6dba7f6b",
     "balance": "168.67",
-    "percentage": "0.0405",
+    "percentage": "0.0354",
     "change_24h": 0,
     "raw_data": {
       "balance": "168667269366424024679",
@@ -506,10 +528,10 @@
     }
   },
   {
-    "rank": 47,
+    "rank": 49,
     "address": "0xa1470f85c7ef3883694ccb8f26b16604216ba215",
     "balance": "167.42",
-    "percentage": "0.0402",
+    "percentage": "0.0351",
     "change_24h": 0,
     "raw_data": {
       "balance": "167422197913869731474",
@@ -517,32 +539,32 @@
     }
   },
   {
-    "rank": 48,
-    "address": "0xcb159c432054e807c2a8204948807ee3bc8fcbd1",
-    "balance": "165.88",
-    "percentage": "0.0399",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "165881917967826377488",
-      "is_contract": false
-    }
-  },
-  {
-    "rank": 49,
-    "address": "0xd74e967cd94ef490dc7392015200c1d784a6cc51",
-    "balance": "165.78",
-    "percentage": "0.0398",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "165777153234045713195",
-      "is_contract": false
-    }
-  },
-  {
     "rank": 50,
+    "address": "0xf8f9954470c5e054b27bb15d7e9b4055129daf63",
+    "balance": "149.31",
+    "percentage": "0.0313",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "149314957616559382549",
+      "is_contract": false
+    }
+  },
+  {
+    "rank": 51,
+    "address": "0x03c25c81e480bc73db92bd71b04c25167891d426",
+    "balance": "148.86",
+    "percentage": "0.0312",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "148855267426099827779",
+      "is_contract": false
+    }
+  },
+  {
+    "rank": 52,
     "address": "0xb7fd91de6c9da239f27fcf690a420c495c2896a8",
     "balance": "148.31",
-    "percentage": "0.0356",
+    "percentage": "0.0311",
     "change_24h": 0,
     "raw_data": {
       "balance": "148314389624602335318",
@@ -550,10 +572,10 @@
     }
   },
   {
-    "rank": 51,
+    "rank": 53,
     "address": "0xc23406d8e43ee59b8b6411e067c9afab918930f2",
     "balance": "147.70",
-    "percentage": "0.0355",
+    "percentage": "0.0310",
     "change_24h": 0,
     "raw_data": {
       "balance": "147695114684773656944",
@@ -561,10 +583,10 @@
     }
   },
   {
-    "rank": 52,
+    "rank": 54,
     "address": "0x5651e5445e13d742eb1a43d98c8cbbfa7a4a947a",
     "balance": "146.54",
-    "percentage": "0.0352",
+    "percentage": "0.0307",
     "change_24h": 0,
     "raw_data": {
       "balance": "146542856413215077430",
@@ -572,32 +594,54 @@
     }
   },
   {
-    "rank": 53,
-    "address": "0x2e3bb9f1423bbd9bc7c4efeb95ad5768c26c6dfc",
-    "balance": "143.35",
-    "percentage": "0.0344",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "143350521025095639185",
-      "is_contract": false
-    }
-  },
-  {
-    "rank": 54,
-    "address": "0x8609473f9cf4f07b3106ec862418bcdfd76d0e45",
-    "balance": "142.89",
-    "percentage": "0.0343",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "142889488879524184161",
-      "is_contract": false
-    }
-  },
-  {
     "rank": 55,
+    "address": "0xe210475c44be21740050426501585eef20319cb5",
+    "balance": "123.97",
+    "percentage": "0.0260",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "123972567236065901699",
+      "is_contract": false
+    }
+  },
+  {
+    "rank": 56,
+    "address": "0x1c3c6d49817b5d566e08e58bf89f1d4c9d9b40c3",
+    "balance": "123.81",
+    "percentage": "0.0260",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "123812478774773123885",
+      "is_contract": false
+    }
+  },
+  {
+    "rank": 57,
+    "address": "0x46808ab27e74044f99f253db6fb5e5d2e7dd967f",
+    "balance": "123.65",
+    "percentage": "0.0259",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "123651164353425656559",
+      "is_contract": false
+    }
+  },
+  {
+    "rank": 58,
+    "address": "0xb1f89ca59f805cc7984867e5cbee1a8c9f53f308",
+    "balance": "123.52",
+    "percentage": "0.0259",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "123519702950000000000",
+      "is_contract": false
+    }
+  },
+  {
+    "rank": 59,
     "address": "0xdca84f5039ad4bc51e974386e65264f11f7743fb",
     "balance": "122.60",
-    "percentage": "0.0295",
+    "percentage": "0.0257",
     "change_24h": 0,
     "raw_data": {
       "balance": "122600717936680950004",
@@ -605,54 +649,32 @@
     }
   },
   {
-    "rank": 56,
-    "address": "0x066169e6ddf389de6fbcb7fc074ddb01a76e24c7",
-    "balance": "122.21",
-    "percentage": "0.0294",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "122212591807705382912",
-      "is_contract": false
-    }
-  },
-  {
-    "rank": 57,
-    "address": "0x1dc89ab25ab5d8714fcf9ee4bd9c9a58debeb4d8",
-    "balance": "122.01",
-    "percentage": "0.0293",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "122005714760783259737",
-      "is_contract": false
-    }
-  },
-  {
-    "rank": 58,
-    "address": "0x38b26de05af6606c2273d8722f8fda8c067afe56",
-    "balance": "121.33",
-    "percentage": "0.0292",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "121325571652374953817",
-      "is_contract": false
-    }
-  },
-  {
-    "rank": 59,
-    "address": "0xba2235e10503b5b0f57bc012ab2c571ca6794809",
-    "balance": "120.69",
-    "percentage": "0.0290",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "120691298311694353057",
-      "is_contract": false
-    }
-  },
-  {
     "rank": 60,
+    "address": "0x50a4a57fd1dca44486ea945e468d47cd5eba7916",
+    "balance": "107.30",
+    "percentage": "0.0225",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "107296872388459509726",
+      "is_contract": false
+    }
+  },
+  {
+    "rank": 61,
+    "address": "0x618bc0c291ca43209831e2966baba85de3efd3b0",
+    "balance": "106.81",
+    "percentage": "0.0224",
+    "change_24h": 0,
+    "raw_data": {
+      "balance": "106805915163731900790",
+      "is_contract": false
+    }
+  },
+  {
+    "rank": 62,
     "address": "0x36847bd027558556a1092ed91cfd865cf4a8eef2",
     "balance": "106.73",
-    "percentage": "0.0256",
+    "percentage": "0.0224",
     "change_24h": 0,
     "raw_data": {
       "balance": "106729739813717044983",
@@ -660,10 +682,10 @@
     }
   },
   {
-    "rank": 61,
+    "rank": 63,
     "address": "0x54d06a08ffdf44258a9f9bd2f4b4cdd6692a900f",
     "balance": "105.55",
-    "percentage": "0.0254",
+    "percentage": "0.0221",
     "change_24h": 0,
     "raw_data": {
       "balance": "105546651997176228019",
@@ -671,91 +693,69 @@
     }
   },
   {
-    "rank": 62,
-    "address": "0xce3d68fa1345b70c5af46e2eb0ff42470ffec5a3",
-    "balance": "103.20",
-    "percentage": "0.0248",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "103198740291344907237",
-      "is_contract": false
-    }
-  },
-  {
-    "rank": 63,
-    "address": "0x425240bba92d6d49012531b16e9cbc3266e011e1",
-    "balance": "103.00",
-    "percentage": "0.0247",
-    "change_24h": 0,
-    "raw_data": {
-      "balance": "103000000010000000000",
-      "is_contract": false
-    }
-  },
-  {
     "rank": 64,
-    "address": "0xfbc3692deeb263f39c3a30d6d0c0496d97686011",
-    "balance": "102.98",
-    "percentage": "0.0247",
+    "address": "0xcb98c1e66b7ac455621e3539fa6d0fb94b08d19e",
+    "balance": "103.40",
+    "percentage": "0.0217",
     "change_24h": 0,
     "raw_data": {
-      "balance": "102983278198101737260",
-      "is_contract": false
+      "balance": "103398723903683678839",
+      "is_contract": true
     }
   },
   {
     "rank": 65,
-    "address": "0x512ff58a791b69f5935990369338683932b469d1",
-    "balance": "94.22",
-    "percentage": "0.0226",
+    "address": "0xba24118ccaef50ede261ca7d3b952329d20f246b",
+    "balance": "97.17",
+    "percentage": "0.0204",
     "change_24h": 0,
     "raw_data": {
-      "balance": "94215382753377596985",
+      "balance": "97172991787210825459",
       "is_contract": false
     }
   },
   {
     "rank": 66,
-    "address": "0x04b2572fc5031af5956970d1a3a2705c4aff3ad4",
-    "balance": "94.14",
-    "percentage": "0.0226",
+    "address": "0x8160506265592a20eb84852de94c92cab0568625",
+    "balance": "96.82",
+    "percentage": "0.0203",
     "change_24h": 0,
     "raw_data": {
-      "balance": "94142594484092133697",
+      "balance": "96824166733626637172",
       "is_contract": false
     }
   },
   {
     "rank": 67,
-    "address": "0x865f368e735f5afbfb6d31585b8a79bfa97ca5f6",
-    "balance": "93.94",
-    "percentage": "0.0226",
+    "address": "0x4cd9df4b11f55ad3296c212a5b74504dad3333fd",
+    "balance": "96.13",
+    "percentage": "0.0202",
     "change_24h": 0,
     "raw_data": {
-      "balance": "93941671625941375295",
-      "is_contract": true
+      "balance": "96130063994461147985",
+      "is_contract": false
     }
   },
   {
     "rank": 68,
-    "address": "0xa2f23d5595bce7264fab148b8e3c9456d5f65e7e",
-    "balance": "93.88",
-    "percentage": "0.0226",
+    "address": "0x98de7f87baa7a93656a90bf2c13fe9656c933526",
+    "balance": "96.09",
+    "percentage": "0.0201",
     "change_24h": 0,
     "raw_data": {
-      "balance": "93879588198563564848",
+      "balance": "96087824075461116264",
       "is_contract": false
     }
   },
   {
     "rank": 69,
-    "address": "0xcb98c1e66b7ac455621e3539fa6d0fb94b08d19e",
-    "balance": "93.76",
-    "percentage": "0.0225",
+    "address": "0xa2b0405506b13f180e83a66a9903a839b6cbcecd",
+    "balance": "95.82",
+    "percentage": "0.0201",
     "change_24h": 0,
     "raw_data": {
-      "balance": "93757190089647860885",
-      "is_contract": true
+      "balance": "95823939285757858860",
+      "is_contract": false
     }
   }
 ]
