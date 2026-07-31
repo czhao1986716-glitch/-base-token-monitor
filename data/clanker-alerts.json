@@ -5,23 +5,23 @@
     "address": null,
     "rank": null,
     "amount": null,
-    "timestamp": "2026-07-30T02:22:13.226Z"
+    "timestamp": "2026-07-31T02:46:15.435Z"
   },
   {
     "severity": "high",
-    "message": "🔴 超大庄家地址：#1 地址持有 27.12% 的代币",
+    "message": "🔴 超大庄家地址：#1 地址持有 31.70% 的代币",
     "address": "0x8d4ab2a3e89eadfdc729204adf863a0bfc7746f6",
     "rank": 1,
     "amount": 140447.52,
-    "timestamp": "2026-07-30T02:22:13.226Z"
+    "timestamp": "2026-07-31T02:46:15.435Z"
   },
   {
     "severity": "high",
-    "message": "⚠️ 高度集中：前10地址持有 96.06% 的代币，流动性高度集中",
+    "message": "⚠️ 高度集中：前10地址持有 96.11% 的代币，流动性高度集中",
     "address": "0x8d4ab2a3e89eadfdc729204adf863a0bfc7746f6",
     "rank": 1,
     "amount": 140447.52,
-    "timestamp": "2026-07-30T02:22:13.226Z"
+    "timestamp": "2026-07-31T02:46:15.435Z"
   },
   {
     "severity": "medium",
@@ -29,14 +29,14 @@
     "address": "0x8d4ab2a3e89eadfdc729204adf863a0bfc7746f6",
     "rank": 1,
     "amount": 140447.52,
-    "timestamp": "2026-07-30T02:22:13.226Z"
+    "timestamp": "2026-07-31T02:46:15.435Z"
   },
   {
     "severity": "low",
-    "message": "📝 前64地址中有 9 个合约地址",
+    "message": "📝 前64地址中有 12 个合约地址",
     "address": null,
     "rank": null,
     "amount": null,
-    "timestamp": "2026-07-30T02:22:13.226Z"
+    "timestamp": "2026-07-31T02:46:15.435Z"
   }
 ]
